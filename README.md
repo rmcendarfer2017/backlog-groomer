@@ -4,9 +4,11 @@
 
 ---
 
-## See it in action
+## See it in action — Click the thumbnail
 
-[![Watch the Backlog Groomer demo](https://img.youtube.com/vi/I6dYOLCP2A8/maxresdefault.jpg)](https://youtu.be/I6dYOLCP2A8)
+<a href="https://youtu.be/I6dYOLCP2A8" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.youtube.com/vi/I6dYOLCP2A8/maxresdefault.jpg" alt="Watch the Backlog Groomer demo" />
+</a>
 
 ---
 
