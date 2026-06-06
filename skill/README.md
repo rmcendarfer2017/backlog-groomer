@@ -1,87 +1,52 @@
-# Backlog Groomer — Claude.ai Project Setup
+# Backlog Groomer Skill
 
-This turns Claude.ai into a conversational backlog grooming assistant using the PM-TOOLS framework. It runs entirely in Claude.ai chat — no web app, no CLI.
+A Claude.ai custom slash command that gives any product manager a full backlog grooming session — housekeeping sweep, priority scoring, and coordination flags — using the same methodology as the Backlog Groomer web app.
 
----
+## How to install
 
-## Setup (5 minutes)
+### Option A — Let Claude walk you through it (recommended)
 
-### Step 1 — Create a Claude.ai Project
+1. Open [claude.ai](https://claude.ai) and start a new conversation
+2. Share the `backlog-groomer-prompt.md` file from this folder
+3. Claude will recognize the skill file and guide you through installing it as a custom command in your Project settings
 
-1. Go to [claude.ai](https://claude.ai)
-2. Click **Projects** in the left sidebar
-3. Click **New Project** and name it (e.g. "Backlog Groomer")
+### Option B — Install manually
 
-### Step 2 — Add the system prompt
+1. Open a Claude.ai Project (or create one named "Backlog Groomer")
+2. Go to Project settings → **Commands** → **Add command**
+3. Name: `backlog-groomer`
+4. Body: copy everything below the `## SKILL CONTENT` line in `backlog-groomer-prompt.md` and paste it
+5. Save
 
-1. Inside the project, click **Edit project instructions** (or the pencil icon)
-2. Open `backlog-groomer-prompt.md` from this folder
-3. Copy everything **below** the `---` separator (skip the first two lines — those are just setup notes)
-4. Paste into the instructions field and save
+## How to use
 
-### Step 3 — Connect Jira (optional but recommended)
-
-If you want Claude to fetch your Jira backlog directly:
-
-1. In the Project, click **Add integration** or **Connect apps**
-2. Find **Jira** (Atlassian) and connect with your credentials
-3. When you start a conversation, tell Claude your project key — it will search Jira automatically
-
-If you skip this step, Claude will ask you to paste ticket data instead.
-
----
-
-## Starting a session
-
-Open a new conversation inside the Project and Claude will greet you with three setup questions:
-- Your Jira project key (or pasted data)
-- Your active strategic themes for this quarter
-- Whether to run housekeeping, scoring, or both
-
----
-
-## Example conversation
+Once installed, type in any conversation inside that Project:
 
 ```
-You:    Let's groom the SCRUM backlog. Themes: Q3 2026 Enterprise Security.
-        Run both housekeeping and scoring.
-
-Claude: [Fetches SCRUM backlog via Jira integration]
-        Loaded 47 tickets. Running housekeeping sweep...
-
-        ⇒ MERGE CANDIDATE
-        Primary:   SCRUM-12 — Add dark mode to dashboard
-        Duplicate: SCRUM-31 — Implement dark theme for the app
-        ...
-
-        PRIORITY SCORES — SCRUM Backlog
-        Rank | Key      | Score | Q  | F  | T  | Flags
-          1  | SCRUM-8  |  84   | 90 | 95 | 75 | 🔒 Security (Moderate)
-        ...
-
-You:    Rewrite SCRUM-22
-
-Claude: ✎ NEEDS ENRICHMENT — SCRUM-22
-        Suggested rewrite:
-          Title: ...
-          Description: ...
-          Acceptance criteria: ...
-
-You:    Show me only significant flags
-
-Claude: [Filtered flag table]
+/backlog-groomer
 ```
 
----
+Or skip the setup questions by passing your Jira project key:
 
-## Files in this folder
+```
+/backlog-groomer PROJ
+```
+
+## What it does
+
+- Connects to Jira automatically if the integration is active, or accepts pasted ticket data
+- Runs a housekeeping sweep: merge candidates, stale tickets, enrichment rewrites, theme orphans
+- Scores every ticket on quality, freshness, theme alignment, and similarity
+- Surfaces coordination flags (compliance, security, legal, partner dependencies) without deflating scores
+- Stays in session for follow-up prompts: rewrite a ticket, show flag summaries, expand score breakdowns
+
+## Files
 
 | File | Purpose |
 |---|---|
-| `backlog-groomer-prompt.md` | The system prompt — paste this into Claude.ai Project instructions |
-| `README.md` | This setup guide |
+| `backlog-groomer-prompt.md` | The skill file — share with Claude to install, or copy the SKILL CONTENT section manually |
+| `README.md` | This file |
 
 ## Framework reference
 
-Full methodology: `D:\PM-TOOLS\Backlog Groomer\backlog grooming framework.md`
-Web app implementation: `D:\PM-TOOLS\Backlog Groomer\`
+Full methodology: [`backlog grooming framework.md`](../backlog%20grooming%20framework.md)
