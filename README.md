@@ -4,6 +4,12 @@
 
 ---
 
+## See it in action
+
+[![Watch the Backlog Groomer demo](https://img.youtube.com/vi/I6dYOLCP2A8/maxresdefault.jpg)](https://youtu.be/I6dYOLCP2A8)
+
+---
+
 ## Why this exists
 
 Most backlogs share the same problems regardless of team size or industry:
