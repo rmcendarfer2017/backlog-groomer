@@ -19,3 +19,6 @@ Thumbs.db
 # editor
 .vscode/
 .idea/
+
+# internal planning docs
+ROADMAP.md
